@@ -1,5 +1,39 @@
 .form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
     &__field{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
         margin: 1rem;
+    }
+
+    &__buttons{
+        display: flex;
+    }
+
+    &__button{
+        background-color: none;
+        border: none;
+        padding: .5rem .8rem;
+        color:#fff;
+
+        &--submit{
+            background-color: royalblue;
+        }
+
+        &--cancel{
+            background-color: $main;
+
+        }
+
+        &:disabled{
+            background-color: grey;
+            opacity: .5;
+        }
     }
 }
