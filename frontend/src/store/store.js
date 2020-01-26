@@ -8,5 +8,5 @@ const initialState = {
 export const store = createStore(
     reducer,
     initialState,
-    window.devToolsExtension && window.devToolsExtension()
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

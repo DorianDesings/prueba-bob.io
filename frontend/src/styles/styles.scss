@@ -6,7 +6,13 @@
 //Elementos de configuración
 @import "config/colors";
 
+
 //Estilos de los elementos que se repitirán en el sitio web
+@import "blocks/main";
 @import "blocks/header";
 @import "blocks/logo";
 @import "blocks/menu";
+@import "blocks/form";
+@import "blocks/bags";
+@import "blocks/users";
+@import "blocks/footer";

@@ -13,8 +13,10 @@ import { faLuggageCart } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
+    //Estado para el re-render
     const [users, setUsers] = useState([])
 
+    //Redux
     const dispatch = useDispatch();
     const state = useSelector(state => state.allUsers)
 
@@ -29,18 +31,17 @@ const Home = () => {
         })
     }
 
-    const getUsers = async () => {
-        const res = await axios.get('http://localhost:4000')
-        setUsers(res.data.allUsers)
-        return dispatch({
-            type: "ADD_INITAL_USERS",
-            payload: res.data.allUsers
-        })
-    }
-
     useEffect(() => {
+        const getUsers = async () => {
+            const res = await axios.get('http://localhost:4000')
+            setUsers(res.data.allUsers)
+            return dispatch({
+                type: "ADD_INITAL_USERS",
+                payload: res.data.allUsers
+            })
+        }
         getUsers()
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="users">
@@ -50,7 +51,7 @@ const Home = () => {
                         <p className="users__info"><FontAwesomeIcon icon={faUserTie} />{user.name}</p>
                         <p className="users__info"><FontAwesomeIcon icon={faLuggageCart} />{user.bags}</p>
                         <div className="users__buttons">
-                            <Link to={`/${user._id}`}>
+                            <Link to={`/update/${user._id}`}>
                                 <button className="users__button users__button--update">Update</button>
                             </Link>
                             <button className="users__button users__button--delete" onClick={() => handleDelete(user._id)}>Delete</button>
