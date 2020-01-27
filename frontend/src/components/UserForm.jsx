@@ -12,6 +12,7 @@ const UserForm = () => {
     //State
     const [user, setUser] = useState({ name: '', bags: 1 })
     const [disabled, setDisabled] = useState(true)
+    const [inputState, setInputState] = useState('active')
 
     const dispatch = useDispatch();
 
@@ -46,7 +47,9 @@ const UserForm = () => {
                 ...user,
                 [e.target.name]: e.target.value
             })
+            setInputState('active')
         } else {
+            setInputState('error')
             setDisabled(true)
         }
     }
@@ -86,6 +89,10 @@ const UserForm = () => {
                     <input type="button" className="form__button form__button--cancel" value="Cancel" onClick={handleBack} />
                 </div>
             </div>
+            {
+                inputState == 'error' &&
+                <div className="form__error">The name must start with uppercase and have two or more words.</div>
+            }
         </form>
     )
 
